@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ХолодПро</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="scene" aria-hidden="true">
+        <div class="scene__blob scene__blob--1"></div>
+        <div class="scene__blob scene__blob--2"></div>
+        <div class="scene__blob scene__blob--3"></div>
+    </div>
+
+    <div id="msg_pop">
+        <i class="fa-solid fa-circle-check" style="color:#4CAF50;"></i>
+        <h3></h3>
+    </div>
+
+    <header>
+        <div class="logo" onclick="showCatalog()"><i class="fa-solid fa-snowflake"></i> ХолодПро</div>
+        
+        <div class="search" id="searchContainer">
+            <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <input type="text" id="searchInput" placeholder="Поиск..." onkeyup="searchProducts()" />
+        </div>
+
+        <div class="user-actions">
+            <button class="nav-btn" id="profileBtn" onclick="handleProfileClick()">
+                <i id="profileIcon" class="fa-regular fa-user"></i> <span id="profileBtnText">Войти</span>
+            </button>
+            <button class="nav-btn logout-btn" id="logoutBtn" onclick="logout()" style="display: none;">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+            <div style="position: relative;">
+                <button class="nav-btn" id="cartBtn" onclick="toggleMiniCart()">
+                    <i class="fa-solid fa-cart-shopping"></i> <span id="cartCount">0</span>
+                </button>
+                <div id="miniCart" class="mini-cart">
+                    <div id="miniCartContent">Корзина пуста</div>
+                    <button class="go-to-cart-btn" onclick="showCartPage()">В корзину</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="catalogPage">
+            <h2>Холодильники Атлант</h2>
+            <div class="products" id="productList">
+                
+                <div class="product-card" data-name="Холодильник Атлант ХМ 4021-000" onclick="showDetail('atlant4021')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/holodilnikatlanthm-4021-000-500x500.jpg" alt="Атлант ХМ 4021-000">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 4021-000</h3>
+                        <p class="card-desc">Вместительный холодильник с нижней морозильной камерой.</p>
+                        <div class="price">25 000 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 4021-000', 25000)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Холодильник Атлант ХМ 4010-022" onclick="showDetail('atlant4010')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/holodilnikatlant%C2%A0hm-4010-022-500x500.jpg" alt="Атлант ХМ 4010-022">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 4010-022</h3>
+                        <p class="card-desc">Компактная классическая модель для любой кухни.</p>
+                        <div class="price">23 500 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 4010-022', 23500)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Холодильник Атлант ХМ 4210-000" onclick="showDetail('atlant4210')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/holodilnikatlanthm-4210-000-500x500.jpg" alt="Атлант ХМ 4210-000">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 4210-000</h3>
+                        <p class="card-desc">Узкий холодильник серии COMPACT.</p>
+                        <div class="price">27 200 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 4210-000', 27200)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Холодильник Атлант МХМ-2835-08" onclick="showDetail('atlant4300')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/holodilnikatlant%C2%A0mhm-2835-08serebristyj%C2%A0-500x500.jpg" alt="Атлант ХМ 4307-000">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 4307-000</h3>
+                        <p class="card-desc">Полностью встраиваемая модель.</p>
+                        <div class="price">33 000 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 4307-000', 33000)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Холодильник Атлант ХМ 4421-000 N" onclick="showDetail('atlant4401')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/holodilnikatlanthm-4421-000-n-500x500.jpg" alt="Атлант ХМ 4421-000 N">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 4421-000 N</h3>
+                        <p class="card-desc">Система Full No Frost.</p>
+                        <div class="price">35 500 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 4421-000 N', 35500)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Холодильник Атлант ХМ 4621-101" onclick="showDetail('atlant4601')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/atlant/atltant2/holodilnikhm4621-101-500x500.jpg" alt="Атлант ХМ 4621-101">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 4621-101</h3>
+                        <p class="card-desc">Серия ADVANCE, скрытые ручки.</p>
+                        <div class="price">38 900 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 4621-101', 38900)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Холодильник Атлант ХМ-4421-080- N" onclick="showDetail('atlant4710')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/holodilnikatlanthm-4421-080-n-500x500.jpg" alt="Атлант ХМ 4721-101">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 4721-101</h3>
+                        <p class="card-desc">Надежная серия CLASSIC.</p>
+                        <div class="price">30 200 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 4721-101', 30200)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Холодильник Атлант ХМ 2819-90" onclick="showDetail('atlant4811')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/holodilnikatlant%C2%A0mhm-2819-90-500x500.jpg" alt="Атлант ХМ 2819-90">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 2819-90</h3>
+                        <p class="card-desc">Морозилка сверху.</p>
+                        <div class="price">26 800 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 2819-90', 26800)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Холодильник Атлант ХМ 6025-031" onclick="showDetail('atlant5010')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/holodilnikatlanthm-6025-031-500x500.jpg" alt="Атлант ХМ 6025-031">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 6025-031</h3>
+                        <p class="card-desc">Двухкомпрессорная модель.</p>
+                        <div class="price">42 000 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 6025-031', 42000)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Холодильник Атлант ХМ 4625-101" onclick="showDetail('atlant6010')">
+                    <span class="card-spot"></span>
+                    <img class="card-img" src="https://tehnoboom.com/image/cache/catalog/holodilniki/atlant/atltant2/holodilnikhm4625-101-500x500.jpg" alt="Атлант ХМ 4625-101">
+                    <div class="card-body">
+                        <h3>Атлант ХМ 4625-101</h3>
+                        <p class="card-desc">Флагман с сенсорным дисплеем.</p>
+                        <div class="price">55 000 руб.</div>
+                        <button class="btn-spot" onclick="event.stopPropagation(); addToCart('Атлант ХМ 4625-101', 55000)">
+                            <span class="spot"></span>
+                            <span class="text">В корзину</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="productDetail">
+            <button class="back-btn" onclick="showCatalog()"><i class="fa-solid fa-arrow-left"></i> Назад к каталогу</button>
+            <div class="detail-grid">
+                <div class="columnimg">
+                    <img id="detailMainImg" class="mainphotoimg" src="" alt="Холодильник">
+                    <div class="gallery" id="detailGallery"></div>
+                </div>
+                <div class="columncontent">
+                    <h1 id="detailTitle" style="font-size: 32px; margin-bottom: 10px;">Название</h1>
+                    <p id="detailDescShort" style="color: rgba(255,255,255,0.6); font-size: 16px; margin-bottom: 20px;">Краткое описание</p>
+                    <h2 id="detailPrice" style="color: #4CAF50; font-size: 36px; margin-bottom: 30px;">0 ₽</h2>
+                    <button id="detailAddToCart" class="btn-spot" style="font-size: 16px; padding: 18px;">
+                        <span class="spot"></span>
+                        <span class="text"><i class="fa-solid fa-cart-plus"></i> Добавить в корзину</span>
+                    </button>
+                </div>
+                <div class="allinfo">
+                    <div class="glass-tabs" id="detail-tabs">
+                        <div class="glass glass-tab-list" role="tablist" aria-label="Информация о товаре">
+                            <button class="glass-tab" role="tab" aria-selected="true" aria-controls="detailTabDesc" id="tab-desc">Описание</button>
+                            <button class="glass-tab" role="tab" aria-selected="false" aria-controls="detailTabFeat" id="tab-feat">Характеристики</button>
+                        </div>
+                        <div id="detailTabDesc" class="glass-tab-panel inftabs is-active" role="tabpanel" aria-labelledby="tab-desc" data-type="desc"></div>
+                        <div id="detailTabFeat" class="glass-tab-panel inftabs" role="tabpanel" aria-labelledby="tab-feat" data-type="feat"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cartPage">
+            <button class="back-btn" onclick="showCatalog()">← Назад к покупкам</button>
+            <h2>Ваша корзина</h2>
+            <div class="cart-list" id="fullCartContent"></div>
+        </section>
+
+        <section id="profilePage">
+            <button class="back-btn" onclick="showCatalog()">← Назад в каталог</button>
+            <h2>Личный кабинет</h2>
+            <div class="profile-tabs">
+                <button class="profile-tab active" data-profile="info" onclick="switchProfileTab(event, 'info')">Об аккаунте</button>
+                <button class="profile-tab" data-profile="orders" onclick="switchProfileTab(event, 'orders')">История заказов</button>
+            </div>
+            <div class="profile-content" id="profileInfo">
+                <h3>Информация об аккаунте</h3>
+                <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
+                    <div><strong>Имя:</strong> <span id="profileName">—</span></div>
+                    <div><strong>Email:</strong> <span id="profileEmail">—</span></div>
+                    <button class="btn-spot" onclick="logout()" style="width:auto; margin-top:20px; background: rgba(220,53,69,0.2); border-color: #dc3545;">
+                        <span class="spot"></span>
+                        <span class="text"><i class="fa-solid fa-right-from-bracket"></i> Выйти из аккаунта</span>
+                    </button>
+                </div>
+            </div>
+            <div class="profile-content nonvisible" id="profileOrders"></div>
+        </section>
+    </main>
+
+    <div id="authModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAuthModal()">&times;</span>
+            <p id="authMessage" style="color:#ffc107; margin-bottom:15px; display:none;"></p>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" onclick="switchAuthTab(event, 'login')">Вход</button>
+                <button class="auth-tab-btn" onclick="switchAuthTab(event, 'register')">Регистрация</button>
+            </div>
+            <div id="form-login" class="auth-form active">
+                <input type="email" placeholder="Ваш Email" id="loginEmail">
+                <input type="password" placeholder="Пароль" id="loginPass">
+                <button class="btn-spot" onclick="processLogin()" style="margin-top: 10px;">
+                    <span class="spot"></span>
+                    <span class="text">Войти в аккаунт</span>
+                </button>
+            </div>
+            <div id="form-register" class="auth-form">
+                <input type="text" placeholder="Login" id="regName">
+                <input type="email" placeholder="Email" id="regEmail">
+                <input type="password" placeholder="Пароль" id="regPass">
+                <button class="btn-spot" onclick="processRegister()" style="margin-top: 10px;">
+                    <span class="spot"></span>
+                    <span class="text">Создать аккаунт</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
